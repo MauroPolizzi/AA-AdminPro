@@ -25,3 +25,11 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+# Nota para cuando se quiera descargar el repositorio
+
+Estos archivos fueron subidos de manera manual a traves de GitHub y hay faltante de archivos.
+Los archivos faltantes son aquellos que el propio framework te crea.
+Estos son /assets/plugins (solo se subieron algunos, faltan muchos mas),
+          /assets/scss (no se subio ninguno).
+Estos archivos en general no tienen que ver en la afectacion del contenido pronciparl del proytecto
