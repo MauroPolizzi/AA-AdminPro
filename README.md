@@ -28,6 +28,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 # Nota para cuando se quiera descargar el repositorio
 
+---- Esto solo aplica para la rama de `main` ------
 Estos archivos fueron subidos de manera manual a traves de GitHub y hay faltante de archivos.
 Los archivos faltantes son aquellos que el propio framework te crea.
 Estos son /assets/plugins (solo se subieron algunos, faltan muchos mas),
