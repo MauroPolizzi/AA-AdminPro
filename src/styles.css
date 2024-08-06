@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+/* Aqui van los estilos globales */
+.cursor{
+    cursor: pointer;
+}
+
+.w100 {
+    width: 100px;
+}
+
+.img-avatar{
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+}

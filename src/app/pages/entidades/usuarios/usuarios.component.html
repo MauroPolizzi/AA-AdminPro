@@ -1,0 +1,88 @@
+<div class="row">
+  <div class="col-12">
+    <input type="text" class="form-control" placeholder="Buscar" (keyup)="buscar(txtBuscar.value)" #txtBuscar>
+  </div>
+</div>
+
+<div *ngIf="loader" class="d-flex align-items-center justify-content-center">
+  <div class="row">
+    <div class="col-12">
+      <div class="mt-2 mb-2 text-center animate__animated animate__fadeIn">
+        <p><b>Cargando..</b></p>
+        <i class="fa fa-spinner fa-2x fa-spin mb-2" aria-hidden="true"></i>
+        <p><b>Espere por favor.</b></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-12">
+    <table *ngIf="!loader" class="table animate__animated animate__fadeInDown">
+      <thead>
+        <tr>
+          <th class="w100" scope="col"></th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Email</th>
+          <th scope="col">Rol</th>
+          <th scope="col">Autenticacion</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <!-- <th scope="row">xxx</th> -->
+          <td class="text-center">
+            <img class="img-avatar" [src]="usuario.img | imagen: 'usuarios'" alt="image" (click)="cambiarImageUsuario(usuario)">
+          </td>
+          <td>{{ usuario.nombre }}</td>
+          <td>{{ usuario.email }}</td>
+          <td>
+            <select class="form-control" [(ngModel)]="usuario.role" (change)="actualizarUsuarioGrid(usuario)">
+              <option value="ADMIN_ROLE">Admin</option>
+              <option value="USER_ROLE">User</option>
+            </select>
+          </td>
+          <td>
+            <span *ngIf="usuario.google" class="label label-danger">Google</span>
+            <span *ngIf="!usuario.google" class="label label-info">Email</span>
+          </td>
+          <td>
+            <a class="cursor btn btn-outline-info mr-4" data-toggle="tooltip" data-original-title="Editar"><i class="mdi mdi-account-edit"></i></a>
+            <a class="cursor btn btn-outline-danger" (click)="borrar(usuario)" data-toggle="tooltip" data-original-title="Borrar"><i class="mdi mdi-delete"></i></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div *ngIf="usuarios.length === 0" class="d-flex align-items-center justify-content-center">
+  <div class="row">
+    <div class="col-12">
+        <div class="mt-2 mb-2 text-center animate__animated animate__fadeIn">
+          <p><b>Sin resultados</b></p>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <nav *ngIf="usuarios.length !== 0" class="animate__animated animate__fadeInDown" aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        <li class="page-item">
+          <a (click)="cambiarPagina(-5)" class="page-link" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item">
+          <a (click)="cambiarPagina(5)" class="page-link" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
