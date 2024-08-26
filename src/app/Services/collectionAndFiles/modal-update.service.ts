@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Input, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { UpdateEntidadesModal } from 'src/app/interfaces/update-entidades-modal.interface';
 import { IModel } from 'src/app/models/Imodel.model';
 
@@ -6,6 +7,10 @@ import { IModel } from 'src/app/models/Imodel.model';
   providedIn: 'root'
 })
 export class ModalUpdateService implements UpdateEntidadesModal {
+  
+  // Creamos un formulario generico.
+  // Donde luego lo seteamos con los campos de cada entidad que lo utilice
+  public formsUpdate: FormGroup = new FormGroup({});
 
   // Propiedad que tendra el tipo de objeto que abrio el modal
   public tipoIModel: string = ''; 
@@ -26,4 +31,5 @@ export class ModalUpdateService implements UpdateEntidadesModal {
   cerrarModal(): void {
     this._ocultarModal = true;
   }
+
 }

@@ -36,6 +36,11 @@ export class MedicoService {
       );
   }
 
+  public actualizarMedico(medico: MedicoModel){
+    
+    return this.http.put<MedicoModel>(`${base_url}/medico/${medico.Guid}`, medico, { headers: this.authService.headers});
+  }
+
   public eliminarMedico(medico: MedicoModel){
 
     return this.http.delete(`${base_url}/medico/${medico.Guid}`, { headers: this.authService.headers });

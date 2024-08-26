@@ -110,10 +110,24 @@ export class MedicosComponent implements OnInit, OnDestroy {
     }))
   }
 
-  public actualizarMedico(medico: MedicoModel){
-    medico.entityType = 'medico';
-    // Igualamos la prop del servicio con la que recibimos por paramtero
-    this.medicoService.medicoUpdate = medico; 
-    this.modalUpdate.abrirModal(medico);
+  public async actualizarMedico(medico: MedicoModel){
+
+    this.medicoService.actualizarMedico(medico)
+      .subscribe( async (resp: MedicoModel) => {
+        await Swal.fire({
+          title: 'Medico Modificado',
+          icon: 'success',
+        });
+
+        this.cargarMedicos();
+      
+      }, (error) => {
+    
+        Swal.fire({
+          title: 'Error',
+          icon: 'error',
+          text: error.error.message
+        });
+      });
   }
 }

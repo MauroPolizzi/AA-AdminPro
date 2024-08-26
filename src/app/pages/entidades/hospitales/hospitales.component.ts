@@ -116,7 +116,23 @@ export class HospitalesComponent implements OnInit, OnDestroy {
   }
 
   public actualizarHospital(hospital: HospitalModel){
-    hospital.entityType = 'hospital';
-    this.modalUpdate.abrirModal(hospital);
+
+    this.hospitalService.actualizarHospital(hospital)
+      .subscribe( async (resp: HospitalModel) => {
+        await Swal.fire({
+          title: 'Hospital Modificado',
+          icon: 'success'
+        });
+
+        this.cargarHospitales();
+
+      }, (error) => {
+        
+        Swal.fire({
+          title: 'Error',
+          icon: 'error',
+          text: error.error.message
+        });
+      });
   }
 }
