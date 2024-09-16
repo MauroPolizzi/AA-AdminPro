@@ -7,7 +7,6 @@ import { HospitalModel } from 'src/app/models/hospital.model';
 import { HospitalService } from '../../../Services/entidades/hospital/hospital.service';
 import { ModalImageService } from '../../../Services/collectionAndFiles/modal-image.service';
 import { SearchService } from 'src/app/Services/search/search.service';
-import { ModalUpdateService } from 'src/app/Services/collectionAndFiles/modal-update.service';
 
 
 @Component({
@@ -28,8 +27,7 @@ export class HospitalesComponent implements OnInit, OnDestroy {
 
   constructor(private hospitalService: HospitalService, 
             private searchService: SearchService, 
-            public modalImageService: ModalImageService,
-            private modalUpdate : ModalUpdateService) { 
+            public modalImageService: ModalImageService) { 
     //hospitalService.getHospital2().subscribe( (resp: any) => { console.log('GetHospital2: ', resp.hospitalCollection[0]) } )
   }
   

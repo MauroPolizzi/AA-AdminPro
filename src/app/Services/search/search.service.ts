@@ -39,8 +39,8 @@ export class SearchService {
          (hospital: HospitalModel) => new HospitalModel(hospital.nombre, hospital.Guid, hospital.img, hospital.ususarioCreador)
         );
     
-      case 'medico': 
-        return data.map(
+      case 'medico':   
+      return data.map(
           (medic: MedicoModel) => new MedicoModel(medic.nombre, medic.especialidad, medic.Guid, medic.usuarioId, medic.hospitalId, medic.img)
         );
       

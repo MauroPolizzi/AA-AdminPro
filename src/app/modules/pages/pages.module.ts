@@ -25,6 +25,10 @@ import { PromisComponent } from '../../pages/promis/promis.component';
 import { RxjsComponent } from '../../pages/rxjs/rxjs.component';
 
 // Entidades
+// Simples
+import { MedicoComponent } from 'src/app/pages/entidades/medico/medico.component';
+
+// Collection
 import { UsuariosComponent } from 'src/app/pages/entidades/usuarios/usuarios.component';
 import { MedicosComponent } from 'src/app/pages/entidades/medicos/medicos.component';
 import { HospitalesComponent } from 'src/app/pages/entidades/hospitales/hospitales.component';
@@ -39,6 +43,9 @@ import { HospitalesComponent } from 'src/app/pages/entidades/hospitales/hospital
     PromisComponent,
     RxjsComponent,
     // Entidades
+    // Simples
+    MedicoComponent,
+    // Collection
     UsuariosComponent,
     MedicosComponent,
     HospitalesComponent
@@ -52,6 +59,9 @@ import { HospitalesComponent } from 'src/app/pages/entidades/hospitales/hospital
     PromisComponent,
     RxjsComponent,
     // Entidades
+    // Simples
+    MedicoComponent,
+    // Collection
     UsuariosComponent,
     MedicosComponent,
     HospitalesComponent

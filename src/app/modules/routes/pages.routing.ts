@@ -15,6 +15,12 @@ import { AccountSettingsComponent } from "../../pages/account-settings/account-s
 import { PromisComponent } from 'src/app/pages/promis/promis.component';
 import { RxjsComponent } from 'src/app/pages/rxjs/rxjs.component';
 import { MyProfileComponent } from 'src/app/pages/my-profile/my-profile.component';
+
+// Entidades
+// Simples
+import { MedicoComponent } from 'src/app/pages/entidades/medico/medico.component';
+
+// Collection
 import { UsuariosComponent } from 'src/app/pages/entidades/usuarios/usuarios.component';
 import { MedicosComponent } from 'src/app/pages/entidades/medicos/medicos.component';
 import { HospitalesComponent } from 'src/app/pages/entidades/hospitales/hospitales.component';
@@ -37,6 +43,10 @@ const routes: Routes = [
           { path: 'myprofile', component: MyProfileComponent, data: { titulo: 'My Profile' } },
           
           // Entidades
+          // Simples
+          { path: 'medico/:id', component: MedicoComponent, data: { titulo: 'Medico' } },
+          
+          // Collections
           { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Usuarios' } },
           { path: 'medicos', component: MedicosComponent, data: { titulo: 'Medicos' } },
           { path: 'hospitales', component: HospitalesComponent, data: { titulo: 'Hospitales' } },

@@ -5,9 +5,9 @@ import Swal from 'sweetalert2';
 import { MedicoModel } from 'src/app/models/medico.model';
 
 import { MedicoService } from 'src/app/Services/entidades/medico/medico.service';
-import { ModalUpdateService } from 'src/app/Services/collectionAndFiles/modal-update.service';
 import { ModalImageService } from '../../../Services/collectionAndFiles/modal-image.service';
 import { SearchService } from 'src/app/Services/search/search.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -26,7 +26,8 @@ export class MedicosComponent implements OnInit, OnDestroy {
   public loader: boolean = true;
   
   constructor(private medicoService: MedicoService, private search: SearchService, 
-    private modalImageService: ModalImageService, private modalUpdate: ModalUpdateService) { }
+    private modalImageService: ModalImageService,
+    private router: Router) { }
   
   ngOnInit(): void {
     this.cargarMedicos();
@@ -129,5 +130,10 @@ export class MedicosComponent implements OnInit, OnDestroy {
           text: error.error.message
         });
       });
+  }
+
+  public async abrirModalCreacion() {
+    
+    this.router.navigateByUrl(`/dasboard/medico/nuevo`);
   }
 }

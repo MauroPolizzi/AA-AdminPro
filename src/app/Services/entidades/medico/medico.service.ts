@@ -14,7 +14,7 @@ const base_url = environment.base_url;
 export class MedicoService {
 
   // Creamos esta propiedad para capturar y definir los valores del medico que pasemos por parametro al abrir el modal
-  public medicoUpdate: MedicoModel = new MedicoModel('','','','','','','');
+ // public medicoUpdate: MedicoModel = new MedicoModel('','','','','','','');
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -34,6 +34,21 @@ export class MedicoService {
           }
         })
       );
+  }
+
+  public getMedicoById(id: string) {
+
+    return this.http.get<MedicoModel>(`${base_url}/medico/${id}`, { headers: this.authService.headers })
+      .pipe( 
+        map( 
+          (resp: any) => resp.medico
+        ) 
+      );
+  }
+
+  public crearMedico(medico: {nombre: string, especialidad: string, hospitalId: string}) {
+    
+    return this.http.post<MedicoModel>(`${base_url}/medico`, medico, {headers: this.authService.headers});
   }
 
   public actualizarMedico(medico: MedicoModel){
