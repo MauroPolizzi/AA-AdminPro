@@ -11,9 +11,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="title"><a class="link" href="javascript:void(0)">Foto</a></td>
-                            <td class="tablesaw-priority-2">Hospital name</td>
+                        <tr *ngFor="let hospital of hospitales">
+                            <td class="title"><a class="link" href="javascript:void(0)"><img class="img-avatar" [src]="hospital.img | imagen:'hospitales'" alt=""></a></td>
+                            <td class="tablesaw-priority-2">{{ hospital.nombre }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -33,10 +33,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="title"><a class="link" href="javascript:void(0)">Foto</a></td>
-                            <td class="tablesaw-priority-2">Médico name</td>
-                            <td class="tablesaw-priority-2">Médico speciality</td>
+                        <tr *ngFor="let medico of medicos">
+                            <td class="title"><a class="link" href="javascript:void(0)"><img class="img-avatar" [src]="medico.img | imagen:'medicos'" alt=""></a></td>
+                            <td class="tablesaw-priority-2">{{ medico.nombre }}</td>
+                            <td class="tablesaw-priority-2">{{ medico.especialidad }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -57,11 +57,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="title"><a class="link" href="javascript:void(0)">Foto</a></td>
-                            <td class="tablesaw-priority-2">User name</td>
-                            <td class="tablesaw-priority-2">User Email</td>
-                            <td class="tablesaw-priority-2">User Rol</td>
+                        <tr *ngFor="let usuario of usuarios">
+                            <td class="title"><a class="link" href="javascript:void(0)"><img class="img-avatar" [src]="usuario.img | imagen:'usuarios'" alt=""></a></td>
+                            <td class="tablesaw-priority-2">{{ usuario.nombre }}</td>
+                            <td class="tablesaw-priority-2">{{ usuario.email }}</td>
+                            <td class="tablesaw-priority-2">{{ usuario.role }}</td>
                         </tr>
                     </tbody>
                 </table>

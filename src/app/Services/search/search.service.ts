@@ -27,6 +27,14 @@ export class SearchService {
       );
   }
 
+  public buscarAll(query: string) {
+    
+    const url = `${base_url}/todo/${query}`;
+
+    return this.http.get<any[]>(url, { headers: this.authService.headers })
+      .pipe();
+  }
+
   // Transformamos la data, pasandola por los operadores pipe y map
   // esto para ir retornando un nuevo obj con su respectivo tipo
   public transformarData(tipo: string, data: any[]): any[]{
