@@ -11,7 +11,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let hospital of hospitales">
+                        <tr *ngFor="let hospital of hospitales" style="color: blue;">
                             <td class="title"><a class="link" href="javascript:void(0)"><img class="img-avatar" [src]="hospital.img | imagen:'hospitales'" alt=""></a></td>
                             <td class="tablesaw-priority-2">{{ hospital.nombre }}</td>
                         </tr>
