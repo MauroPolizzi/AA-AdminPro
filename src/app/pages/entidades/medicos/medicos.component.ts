@@ -5,9 +5,9 @@ import Swal from 'sweetalert2';
 import { MedicoModel } from 'src/app/models/medico.model';
 
 import { MedicoService } from 'src/app/Services/entidades/medico/medico.service';
-import { ModalUpdateService } from 'src/app/Services/collectionAndFiles/modal-update.service';
 import { ModalImageService } from '../../../Services/collectionAndFiles/modal-image.service';
 import { SearchService } from 'src/app/Services/search/search.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -26,7 +26,8 @@ export class MedicosComponent implements OnInit, OnDestroy {
   public loader: boolean = true;
   
   constructor(private medicoService: MedicoService, private search: SearchService, 
-    private modalImageService: ModalImageService, private modalUpdate: ModalUpdateService) { }
+    private modalImageService: ModalImageService,
+    private router: Router) { }
   
   ngOnInit(): void {
     this.cargarMedicos();
@@ -110,10 +111,29 @@ export class MedicosComponent implements OnInit, OnDestroy {
     }))
   }
 
-  public actualizarMedico(medico: MedicoModel){
-    medico.entityType = 'medico';
-    // Igualamos la prop del servicio con la que recibimos por paramtero
-    this.medicoService.medicoUpdate = medico; 
-    this.modalUpdate.abrirModal(medico);
+  public async actualizarMedico(medico: MedicoModel){
+
+    this.medicoService.actualizarMedico(medico)
+      .subscribe( async (resp: MedicoModel) => {
+        await Swal.fire({
+          title: 'Medico Modificado',
+          icon: 'success',
+        });
+
+        this.cargarMedicos();
+      
+      }, (error) => {
+    
+        Swal.fire({
+          title: 'Error',
+          icon: 'error',
+          text: error.error.message
+        });
+      });
+  }
+
+  public async abrirModalCreacion() {
+    
+    this.router.navigateByUrl(`/dasboard/medico/nuevo`);
   }
 }

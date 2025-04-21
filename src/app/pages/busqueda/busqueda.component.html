@@ -1,0 +1,71 @@
+<div class="row animate__animated animate__fadeIn">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Hospitales</h5>
+                <table class="tablesaw table-striped table-hover table-bordered table tablesaw-columntoggle" data-tablesaw-mode="columntoggle" id="table-5466">
+                    <thead>
+                        <tr>
+                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist"></th>
+                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="2" class="tablesaw-priority-2">Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let hospital of hospitales" style="color: blue;">
+                            <td class="title"><a class="link" href="javascript:void(0)"><img class="img-avatar" [src]="hospital.img | imagen:'hospitales'" alt=""></a></td>
+                            <td class="tablesaw-priority-2">{{ hospital.nombre }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Medicos</h5>
+                <table class="tablesaw table-striped table-hover table-bordered table tablesaw-columntoggle" data-tablesaw-mode="columntoggle" id="table-5466">
+                    <thead>
+                        <tr>
+                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist"></th>
+                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="2" class="tablesaw-priority-2">Nombre</th>
+                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="3" class="tablesaw-priority-3">Especialidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let medico of medicos">
+                            <td class="title"><a class="link" href="javascript:void(0)"><img class="img-avatar" [src]="medico.img | imagen:'medicos'" alt=""></a></td>
+                            <td class="tablesaw-priority-2">{{ medico.nombre }}</td>
+                            <td class="tablesaw-priority-2">{{ medico.especialidad }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Usuarios</h5>
+                <table class="tablesaw table-striped table-hover table-bordered table tablesaw-columntoggle" data-tablesaw-mode="columntoggle" id="table-5466">
+                    <thead>
+                        <tr>
+                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="persist"></th>
+                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="2" class="tablesaw-priority-2">Nombre</th>
+                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="3" class="tablesaw-priority-3">Email</th>
+                            <th scope="col" data-tablesaw-sortable-col="" data-tablesaw-priority="4" class="tablesaw-priority-4">Rol</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let usuario of usuarios">
+                            <td class="title"><a class="link" href="javascript:void(0)"><img class="img-avatar" [src]="usuario.img | imagen:'usuarios'" alt=""></a></td>
+                            <td class="tablesaw-priority-2">{{ usuario.nombre }}</td>
+                            <td class="tablesaw-priority-2">{{ usuario.email }}</td>
+                            <td class="tablesaw-priority-2">{{ usuario.role }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

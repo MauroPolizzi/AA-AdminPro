@@ -32,7 +32,7 @@
             <img class="img-avatar" class="img-avatar" [src]="hospital.img | imagen:'hospitales'" alt="image" (click)="cambiarImageHospital(hospital)">
             <!-- {{ hospital.img | imagen:'hospitales' }} -->
           </td>
-          <td>{{ hospital.nombre }}</td>
+          <td><input class="form-control" type="text" [(ngModel)]="hospital.nombre"></td>
           <td>{{ hospital.ususarioCreador.nombre }}</td>
           <td>
             <a class="cursor btn btn-outline-info mr-4" (click)="actualizarHospital(hospital)" data-toggle="tooltip" data-original-title="Editar"><i class="mdi mdi-account-edit"></i></a>

@@ -33,6 +33,11 @@ export class HospitalService {
       );
   }
 
+  public actualizarHospital(hospital: HospitalModel) {
+    
+    return this.http.put<HospitalModel>(`${base_url}/hospital/${hospital.Guid}`, hospital, { headers: this.authService.headers });
+  }
+
   public eliminarHospital(hospital: HospitalModel){
 
     return this.http.delete(`${base_url}/hospital/${hospital.Guid}`, { headers: this.authService.headers });

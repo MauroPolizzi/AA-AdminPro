@@ -7,7 +7,6 @@ import { HospitalModel } from 'src/app/models/hospital.model';
 import { HospitalService } from '../../../Services/entidades/hospital/hospital.service';
 import { ModalImageService } from '../../../Services/collectionAndFiles/modal-image.service';
 import { SearchService } from 'src/app/Services/search/search.service';
-import { ModalUpdateService } from 'src/app/Services/collectionAndFiles/modal-update.service';
 
 
 @Component({
@@ -28,8 +27,7 @@ export class HospitalesComponent implements OnInit, OnDestroy {
 
   constructor(private hospitalService: HospitalService, 
             private searchService: SearchService, 
-            public modalImageService: ModalImageService,
-            private modalUpdate : ModalUpdateService) { 
+            public modalImageService: ModalImageService) { 
     //hospitalService.getHospital2().subscribe( (resp: any) => { console.log('GetHospital2: ', resp.hospitalCollection[0]) } )
   }
   
@@ -116,7 +114,23 @@ export class HospitalesComponent implements OnInit, OnDestroy {
   }
 
   public actualizarHospital(hospital: HospitalModel){
-    hospital.entityType = 'hospital';
-    this.modalUpdate.abrirModal(hospital);
+
+    this.hospitalService.actualizarHospital(hospital)
+      .subscribe( async (resp: HospitalModel) => {
+        await Swal.fire({
+          title: 'Hospital Modificado',
+          icon: 'success'
+        });
+
+        this.cargarHospitales();
+
+      }, (error) => {
+        
+        Swal.fire({
+          title: 'Error',
+          icon: 'error',
+          text: error.error.message
+        });
+      });
   }
 }
