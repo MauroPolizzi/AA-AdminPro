@@ -102,5 +102,8 @@
       }
     }
   },
-  "defaultProject": "clitest"
+  "defaultProject": "clitest",
+  "cli": {
+    "analytics": false
+  }
 }
