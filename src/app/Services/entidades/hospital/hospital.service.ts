@@ -33,6 +33,15 @@ export class HospitalService {
       );
   }
 
+  public getHospitalById(id: string | undefined | HospitalModel) {
+
+    return this.http.get<HospitalModel>(`${base_url}/hospital/${id}`, { headers: this.authService.headers })
+      .pipe(
+        map( (resp: any) => 
+          { return new HospitalModel(resp.hospital.nombre, resp.hospital.Guid, resp.hospital.img, resp.hospital.ususarioCreador) } )
+      );
+  }
+
   public actualizarHospital(hospital: HospitalModel) {
     
     return this.http.put<HospitalModel>(`${base_url}/hospital/${hospital.Guid}`, hospital, { headers: this.authService.headers });

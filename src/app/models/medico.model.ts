@@ -11,7 +11,7 @@ export class MedicoModel implements IModel{
         public especialidad: string,
         public Guid?: string,
         public usuarioId?: string,
-        public hospitalId?: HospitalModel,
+        public hospitalId?: HospitalModel | string,
         public img?: string,
         public entityType?: string
     ) {}

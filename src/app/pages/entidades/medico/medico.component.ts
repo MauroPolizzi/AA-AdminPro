@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -23,7 +23,7 @@ export class MedicoComponent implements OnInit {
   public formMedico: FormGroup = new FormGroup({});
   public hospitalSeleccionado: any;
   public medicoSeleccionado!: MedicoModel;
-
+  
   constructor(private hospitalService: HospitalService,
             private medicoService: MedicoService, 
             private formBuilder: FormBuilder,
@@ -60,16 +60,23 @@ export class MedicoComponent implements OnInit {
           .subscribe( (resp: any) => { 
 
             this.medicoSeleccionado = resp;
-            // Desestructuramos la respuesta
-            const { nombre, especialidad, hospitalId: { _id: hospitalId } } = resp;
+            this.cargarHospital(this.medicoSeleccionado.hospitalId);
             // Y seteamos los valores del formulario (Ojo, siempre deben ser los mismos nombres que los grupos del form)
-            this.formMedico.setValue({nombre, especialidad, hospitalId})
+            this.cargarFormulario(this.medicoSeleccionado);
           })
       });
-
   }
 
-  public cargarHospitales() {
+  public cargarHospital(hospitalId: string | undefined | HospitalModel) {
+
+    this.hospitalService.getHospitalById(hospitalId)
+      .pipe( delay(100) )
+      .subscribe( (resp: HospitalModel) => {
+        this.hospitalSeleccionado = resp;
+      });
+  }
+
+  private cargarHospitales() {
     
     this.hospitalService.getHospital(this.pagina)
       .subscribe( (resp: any) => {
@@ -151,5 +158,12 @@ export class MedicoComponent implements OnInit {
           text: error.error.message
         });
       });
+  }
+
+  private cargarFormulario(medico: MedicoModel) {
+    
+    // Desestructuramos la respuesta
+    const { nombre, especialidad, hospitalId } = medico;
+    this.formMedico.setValue({ nombre, especialidad, hospitalId });
   }
 }
