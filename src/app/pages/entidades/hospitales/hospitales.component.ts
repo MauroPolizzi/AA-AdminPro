@@ -7,6 +7,7 @@ import { HospitalModel } from 'src/app/models/hospital.model';
 import { HospitalService } from '../../../Services/entidades/hospital/hospital.service';
 import { ModalImageService } from '../../../Services/collectionAndFiles/modal-image.service';
 import { SearchService } from 'src/app/Services/search/search.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -26,8 +27,9 @@ export class HospitalesComponent implements OnInit, OnDestroy {
   public loader: boolean = true;
 
   constructor(private hospitalService: HospitalService, 
-            private searchService: SearchService, 
-            public modalImageService: ModalImageService) { 
+    private searchService: SearchService, 
+    public modalImageService: ModalImageService,
+    private router: Router) { 
     //hospitalService.getHospital2().subscribe( (resp: any) => { console.log('GetHospital2: ', resp.hospitalCollection[0]) } )
   }
   
@@ -132,5 +134,10 @@ export class HospitalesComponent implements OnInit, OnDestroy {
           text: error.error.message
         });
       });
+  }
+
+  public abrirModalCreacion() {
+
+    this.router.navigateByUrl(`/dasboard/hospital/nuevo`);
   }
 }

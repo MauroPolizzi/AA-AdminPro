@@ -27,6 +27,7 @@ import { RxjsComponent } from '../../pages/rxjs/rxjs.component';
 
 // Entidades
 // Simples
+import { HospitalComponent } from 'src/app/pages/entidades/hospital/hospital.component';
 import { MedicoComponent } from 'src/app/pages/entidades/medico/medico.component';
 
 // Collection
@@ -46,6 +47,7 @@ import { UsuariosComponent } from 'src/app/pages/entidades/usuarios/usuarios.com
     RxjsComponent,
     // Entidades
     // Simples
+    HospitalComponent,
     MedicoComponent,
     // Collection
     HospitalesComponent,
@@ -63,6 +65,7 @@ import { UsuariosComponent } from 'src/app/pages/entidades/usuarios/usuarios.com
     RxjsComponent,
     // Entidades
     // Simples
+    HospitalComponent,
     MedicoComponent,
     // Collection
     HospitalesComponent,

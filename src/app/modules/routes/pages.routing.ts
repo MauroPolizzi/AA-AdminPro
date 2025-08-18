@@ -19,6 +19,7 @@ import { RxjsComponent } from 'src/app/pages/rxjs/rxjs.component';
 
 // Entidades
 // Simples
+import { HospitalComponent } from 'src/app/pages/entidades/hospital/hospital.component';
 import { MedicoComponent } from 'src/app/pages/entidades/medico/medico.component';
 
 // Collection
@@ -46,6 +47,7 @@ const routes: Routes = [
           
           // Entidades
           // Simples
+          { path: 'hospital/:id', component: HospitalComponent, data: { titulo: 'Hospital' } },
           { path: 'medico/:id', component: MedicoComponent, data: { titulo: 'Medico' } },
           
           // Collections

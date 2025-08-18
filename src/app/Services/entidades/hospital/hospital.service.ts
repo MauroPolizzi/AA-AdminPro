@@ -42,6 +42,11 @@ export class HospitalService {
       );
   }
 
+  public crearHospital(nombre: string) {
+    
+    return this.http.post<HospitalModel>(`${base_url}/hospital`, nombre, {headers: this.authService.headers});
+  }
+
   public actualizarHospital(hospital: HospitalModel) {
     
     return this.http.put<HospitalModel>(`${base_url}/hospital/${hospital.Guid}`, hospital, { headers: this.authService.headers });
