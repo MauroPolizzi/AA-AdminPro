@@ -4,7 +4,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Datos del Hospital</h4>
-                <form class="form-horizontal p-t-20">
+                <form [formGroup]="formHospital" (submit)="guardarCambios()" class="form-horizontal p-t-20">
                     <div class="form-group row">
                         <label class="col-sm-3 control-label">Nombre</label>
                         <div class="col-sm-9">
@@ -16,7 +16,7 @@
                     </div>
                     <div class="form-group row m-b-0">
                         <div class="offset-sm-3 col-sm-9">
-                            <button type="submit" class="btn btn-primary waves-effect waves-light">
+                            <button type="submit" class="btn btn-primary waves-effect waves-light" [disabled]="formHospital.invalid">
                                 <i class="fa-solid fa-floppy-disk"></i>
                                 Guardar cambios
                             </button>
@@ -26,4 +26,22 @@
             </div>
         </div>
     </div>
+
+    <!-- <div class="col-lg-4">
+        <form class="g-3">
+            <div class="col mb-2 text-center img-container">
+                <img *ngIf="!imgFile" class="img-thumbnail" [src]="imgTemp">
+                <img *ngIf="imgFile" class="img-thumbnail" [src]="imgTemp">
+            </div>
+            <div class="col">
+                <input (change)="capturarFoto($event)" type="file" class="form-control" id="inputFile">
+            </div>
+            <div class="col mt-3">
+                <button (click)="actualizarFoto()" type="button" class="btn btn-outline-info" [disabled]="!imgFile">
+                    <i class="fas fa-save fa-lg  "></i>
+                    Cambiar foto
+                </button>
+            </div>
+        </form>
+    </div> -->
 </div>

@@ -42,9 +42,9 @@ export class HospitalService {
       );
   }
 
-  public crearHospital(nombre: string) {
+  public crearHospital(hospital: {nombre: string}) {
     
-    return this.http.post<HospitalModel>(`${base_url}/hospital`, nombre, {headers: this.authService.headers});
+    return this.http.post<HospitalModel>(`${base_url}/hospital`, hospital, {headers: this.authService.headers});
   }
 
   public actualizarHospital(hospital: HospitalModel) {
