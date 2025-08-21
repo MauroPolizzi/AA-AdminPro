@@ -1,8 +1,8 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap, delay } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 
 import { environment } from 'src/environments/environment';
@@ -38,10 +38,6 @@ export class UsuarioService {
   { }
 
   public getUsuarios(pagina: number){
-
-    // return this.http.get(`${base_url}/usuario`, {
-    //   headers: { 'x-token': this.authService.token }
-    // });
 
     return this.http.get(`${base_url}/usuario?pagina=${pagina}`, { headers: this.authService.headers })
       .pipe(

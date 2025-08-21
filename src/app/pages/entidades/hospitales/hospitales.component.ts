@@ -59,17 +59,31 @@ export class HospitalesComponent implements OnInit, OnDestroy {
       });
   }
 
-  public cambiarPagina( valor: number ){
-    
+   public cambiarPagina( valor: number ){
+
+    // Sumamos el valor que viene desde el template
     this.pagina += valor;
+    
+    // Verificamos que la pagina nunca sea menor a cero (valor negativo, rompe el servidor)
+    if(this.pagina < 0) this.pagina = 0;
 
-    if(this.pagina < 0){
-      this.pagina = 0;
-    }else if(this.pagina >= this.totalHospitales){
+    // Al volver atras cuando se tiene la pagina en cero, vuelve a realizar una consulta a la API,
+    // esto se podria evitar usando un cache que guarde los datos y evitrar llamadas inecesarias.
+    //if(this.pagina === 0) { console.log('Sin mas registros por mostrar');  return; }
+    
+    // Sabemos que la API devuelve 10 registros por paginado, y en la misma respuesta el total de registros en base de datos
+    // En ese caso, no es necesario ejecutar ninguna accion si ya se visualiza el total de los registros 
+    if(this.totalHospitales === this.pagina){ console.log('Sin mas registros por mostrar');  return; }
+    
+    // Solo si el total de registros supera el valor de pagina, enviamos una solicitud a la API
+    if(this.totalHospitales > this.pagina) this.cargarHospitales();
+
+    // Si el total de registros es inferior al valor de pagina, solo restamos el valor que viene desde el template a pagina
+    if(this.totalHospitales < this.pagina){
       this.pagina -= valor;
+      return;
     }
-
-    this.cargarHospitales();
+    
   }
 
   public buscar(query: string){
@@ -108,7 +122,8 @@ export class HospitalesComponent implements OnInit, OnDestroy {
               text: `Se elimino con exito el hospital: ${hospital.nombre}`
             });
 
-            // Una vez confirmada la accion de eliminar, volvemos a cargar la lista de hospitales
+            // Una vez confirmada la accion de eliminar, seteamos la pagina en 0 y volvemos a cargar la lista de hospitales
+            this.pagina = 0;
             this.cargarHospitales();
           })
       }

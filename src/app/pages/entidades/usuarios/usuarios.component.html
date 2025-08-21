@@ -49,7 +49,6 @@
             <span *ngIf="!usuario.google" class="label label-info">Email</span>
           </td>
           <td>
-            <a class="cursor btn btn-outline-info mr-4" data-toggle="tooltip" data-original-title="Editar"><i class="mdi mdi-account-edit"></i></a>
             <a class="cursor btn btn-outline-danger" (click)="borrar(usuario)" data-toggle="tooltip" data-original-title="Borrar"><i class="mdi mdi-delete"></i></a>
           </td>
         </tr>
@@ -69,20 +68,23 @@
 </div>
 
 <div class="row">
-  <div class="col-12">
+  <div class="col-10">
     <nav *ngIf="usuarios.length !== 0" class="animate__animated animate__fadeInDown" aria-label="Page navigation example">
       <ul class="pagination justify-content-center">
         <li class="page-item">
-          <a (click)="cambiarPagina(-5)" class="page-link" aria-label="Previous">
+          <a (click)="cambiarPagina(-10)" class="page-link" aria-label="Previous">
             <span aria-hidden="true">&laquo;</span>
           </a>
         </li>
         <li class="page-item">
-          <a (click)="cambiarPagina(5)" class="page-link" aria-label="Next">
+          <a (click)="cambiarPagina(10)" class="page-link" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
           </a>
         </li>
       </ul>
     </nav>
+  </div>
+  <div class="col-2" style="align-content: end;">
+    <p class="text-center">Total de registros: {{ totalUsuarios }}</p>
   </div>
 </div>
