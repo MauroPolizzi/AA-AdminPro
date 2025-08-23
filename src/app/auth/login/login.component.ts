@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { UsuarioService } from 'src/app/Services/entidades/usuario/usuario.service';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../Services/auth/auth.service';
 
 declare const google: any;
 
@@ -25,6 +26,7 @@ export class LoginComponent implements AfterViewInit {
 
   constructor(private router: Router,
               private usuarioService: UsuarioService,
+              private authService : AuthService,
               private ngZone: NgZone) { 
     
     // Password: 121212
@@ -59,7 +61,7 @@ export class LoginComponent implements AfterViewInit {
       return;
     }
 
-    this.usuarioService.login(this.formLogin.value)
+    this.authService.login(this.formLogin.value)
       .subscribe( resp => {
       
         //console.log(resp);
@@ -86,16 +88,22 @@ export class LoginComponent implements AfterViewInit {
 
   // El contenido de esta function fue sacado de la implementacion del boton de google de la parte
   // del backend, que fue en el directorio 'public/index.html'
-  private googleInit(){
-    google.accounts.id.initialize({
-      client_id: "459567625014-odk90d389jnsurk8s89p1ls833srcc29.apps.googleusercontent.com",
-      callback: (response: any) => this.handleCredentialResponse(response)
+  private async googleInit(){
+
+    // Obtenemos el client_id desde el backend
+    this.authService.return_client_id().subscribe( async (resp: any) => {
+
+      await google.accounts.id.initialize({
+        client_id: resp.googleClientId,
+        callback: (response: any) => this.handleCredentialResponse(response)
+      });
+      google.accounts.id.renderButton(
+        //document.getElementById("buttonDiv"),
+        this.googleBtn?.nativeElement,
+        { theme: "outline", size: "large" }  // customization attributes
+      );
     });
-    google.accounts.id.renderButton(
-      //document.getElementById("buttonDiv"),
-      this.googleBtn?.nativeElement,
-      { theme: "outline", size: "large" }  // customization attributes
-    );
+
   }
 
   // Llamamos al metodo de autenticacion de google, y comparamos con el token que se guardo en localStorage

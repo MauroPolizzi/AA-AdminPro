@@ -128,16 +128,6 @@ export class UsuarioService {
     return this.http.put<UsuarioModel>(`${base_url}/usuario/${usuario.Guid}`, usuario, { headers: this.authService.headers });
   }
 
-  public login(formData: LoginForm){
-    
-    return this.http.post(`${base_url}/login`, formData)
-      .pipe(
-        tap( (resp: any) => {
-          localStorage.setItem('token', resp.token);
-        })
-      );
-  }
-
   public loginGoogle( token: string ){
     
     return this.http.post(`${base_url}/login/google`, { token })
